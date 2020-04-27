@@ -62,9 +62,12 @@
       // }
     }
   });
-
   $('#link-button').on('click', function(e) {
     handler.open();
   });
+  $( document ).ready(function() {
+    console.log( "ready!" );
+    handler.open();
+});
 })(jQuery);
 </script>
