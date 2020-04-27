@@ -2,7 +2,27 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <button id="link-button">Link Account</button>
+  <style>
+    .container {
+      height: 200px;
+      position: relative;
+      /** border: 3px solid green;**/
+    }
+    
+    .vertical-center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+  </style>
+    
+  <div class="container">
+    <div class="vertical-center">
+      <button id="link-button">Restart Bank Linking Process</button>
+    </div>
+  </div>
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
