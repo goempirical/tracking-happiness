@@ -4,7 +4,7 @@
 <script type="text/javascript">
 (function($) {
   var handler = Plaid.create({
-    clientName: 'Plaid Quickstart',
+    clientName: 'Dreamcart',
     // Optional, specify an array of ISO-3166-1 alpha-2 country
     // codes to initialize Link; European countries will have GDPR
     // consent panel
@@ -25,6 +25,7 @@
       // Optional, called when Link loads
     },
     onSuccess: function(public_token, metadata) {
+      alert("Success, the account has been linked!")
       // Send the public_token to your app server.
       // The metadata object contains info about the institution the
       // user selected and the account ID or IDs, if the
@@ -43,6 +44,7 @@
       // Storing this information can be helpful for support.
     },
     onEvent: function(eventName, metadata) {
+      alert("eventName: "+ eventName)
       // Optionally capture Link flow events, streamed through
       // this callback as your users connect an Item to Plaid.
       // For example:
