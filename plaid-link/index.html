@@ -25,7 +25,7 @@
       // Optional, called when Link loads
     },
     onSuccess: function(public_token, metadata) {
-      alert("Success, the account has been linked!")
+      alert("Success, the account has been linked!", metadata)
       // Send the public_token to your app server.
       // The metadata object contains info about the institution the
       // user selected and the account ID or IDs, if the
@@ -44,7 +44,7 @@
       // Storing this information can be helpful for support.
     },
     onEvent: function(eventName, metadata) {
-      alert("eventName: "+ eventName)
+      // alert("eventName: "+ eventName)
       // Optionally capture Link flow events, streamed through
       // this callback as your users connect an Item to Plaid.
       // For example:
