@@ -54,11 +54,14 @@
     // enable all Auth features
     userLegalName: 'John Appleseed',
     userEmailAddress: 'jappleseed@yourapp.com',
+    isWebview:true,
     onLoad: function() {
       // Optional, called when Link loads
     },
     onSuccess: function(public_token, metadata) {
-      alert("Success, the account has been linked!", metadata)
+      alert("Success, the account has been linked!", metadata);
+      console.log("public_token: ", public_token);
+      console.log("metadata", metadata);
       // Send the public_token to your app server.
       // The metadata object contains info about the institution the
       // user selected and the account ID or IDs, if the
