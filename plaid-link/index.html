@@ -35,6 +35,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
 <script type="text/javascript">
+var urlParams = new URLSearchParams(window.location.search);
 (function($) {
   var handler = Plaid.create({
     clientName: 'Dreamcart',
@@ -53,21 +54,32 @@
     // Optional, specify userLegalName and userEmailAddress to
     // enable all Auth features
     userLegalName: 'John Appleseed',
-    userEmailAddress: 'jappleseed@yourapp.com',
-    isWebview:true,
+    userEmailAddress: urlParams.get("user"),
     onLoad: function() {
       // Optional, called when Link loads
     },
-    onSuccess: function(public_token, metadata) {
+    onSuccess: async function(public_token, metadata) {
       alert("Success, the account has been linked!", metadata);
-      console.log("public_token: ", public_token);
-      console.log("metadata", metadata);
       // Send the public_token to your app server.
       // The metadata object contains info about the institution the
       // user selected and the account ID or IDs, if the
       // Select Account view is enabled.
       $.post('/get_access_token', {
         public_token: public_token,
+      });
+
+
+      console.log("public_token: ", public_token);
+      console.log("metadata", metadata);
+
+      const payload = { 
+        email: urlParams.get("user"),
+        metadata: metadata,
+      };
+      
+      //posting this to Adalo
+      $.post("https://hooks.zapier.com/hooks/catch/7148700/o5nuzo7/", payload, function(data){
+        //alert(data);
       });
     },
     onExit: function(err, metadata) {
@@ -97,7 +109,8 @@
     handler.open();
   });
   $( document ).ready(function() {
-    console.log( "ready!" );
+    console.log( "ready!", urlParams );
+    alert(urlParams.get("user"));
     handler.open();
 });
 })(jQuery);
